@@ -29,6 +29,7 @@ pub fn stat(state: &mut Lua) {
     os_table.set("name", stat_os::name()).unwrap();
     os_table.set("version", stat_os::version()).unwrap();
     os_table.set("hostname", stat_os::hostname()).unwrap();
+    os_table.set("kernel", stat_os::kernel()).unwrap();
 
     state.globals().set("wm", wm_table).unwrap();
     state.globals().set("user", user_table).unwrap();

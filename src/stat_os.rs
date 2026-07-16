@@ -20,3 +20,10 @@ pub fn hostname() -> String {
         None => "unknown".to_string(),
     }
 }
+
+pub fn kernel() -> String {
+    match System::kernel_version() {
+        Some(kernel) => kernel,
+        None => "unknown".to_string(),
+    }
+}
