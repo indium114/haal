@@ -3,6 +3,7 @@ use mlua::{Lua, Table, Value};
 use std::{fs, iter::repeat_n, process::exit};
 
 mod stat;
+mod stat_gpu;
 mod stat_mem;
 mod stat_os;
 mod stat_shell;
