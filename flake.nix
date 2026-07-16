@@ -21,6 +21,7 @@
             rust-analyzer
             clippy
             pkg-config
+            pciutils
           ];
         };
 
