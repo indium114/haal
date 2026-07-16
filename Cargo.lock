@@ -41,6 +41,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801"
 
 [[package]]
+name = "colored_text"
+version = "0.5.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "745f8a64d62b40a725042e502af674abe0fb85726224780f1b2ff70552a4914c"
+
+[[package]]
 name = "dirs"
 version = "6.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -88,6 +94,7 @@ dependencies = [
 name = "haal"
 version = "0.1.0"
 dependencies = [
+ "colored_text",
  "dirs",
  "mlua",
  "sysinfo",
