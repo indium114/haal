@@ -110,3 +110,7 @@ these are used for changing the colour of text.
 - `colour.boldPurple("text")`
 - `colour.boldCyan("text")`
 - `colour.boldWhite("text")`
+
+## credits
+
+`haal` was heavily inspired by [fetchit](https://codeberg.org/nzuum/fetchit), a really cool, minimal fetch tool written in *c*
