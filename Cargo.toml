@@ -2,6 +2,8 @@
 name = "haal"
 version = "0.1.0"
 edition = "2024"
+description = "a small system fetch tool"
+license = "Unlicense"
 
 [dependencies]
 colored_text = "0.5.1"
