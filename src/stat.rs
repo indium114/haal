@@ -1,5 +1,6 @@
 use mlua::Lua;
 
+use crate::stat_disk;
 use crate::stat_gpu;
 use crate::stat_mem;
 use crate::stat_os;
@@ -20,6 +21,7 @@ pub fn stat(state: &mut Lua) {
     let os_table = state.create_table().unwrap();
     let mem_table = state.create_table().unwrap();
     let gpu_table = state.create_table().unwrap();
+    let disk_table = state.create_table().unwrap();
 
     wm_table.set("name", stat_wm::wm()).unwrap();
     user_table.set("name", stat_user::user()).unwrap();
@@ -37,6 +39,8 @@ pub fn stat(state: &mut Lua) {
     mem_table.set("total", stat_mem::total()).unwrap();
     mem_table.set("used", stat_mem::used()).unwrap();
     gpu_table.set("name", stat_gpu::name()).unwrap();
+    disk_table.set("total", stat_disk::total()).unwrap();
+    disk_table.set("used", stat_disk::used()).unwrap();
 
     state.globals().set("wm", wm_table).unwrap();
     state.globals().set("user", user_table).unwrap();
@@ -47,4 +51,5 @@ pub fn stat(state: &mut Lua) {
     state.globals().set("os", os_table).unwrap();
     state.globals().set("mem", mem_table).unwrap();
     state.globals().set("gpu", gpu_table).unwrap();
+    state.globals().set("disk", disk_table).unwrap();
 }
