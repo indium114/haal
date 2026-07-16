@@ -40,8 +40,8 @@
 
           cargoLock.lockFile = ./Cargo.lock;
 
-          buildInputs = [
-            pkgs.pciutils
+          nativeBuildInputs = [
+            pkgs.makeBinaryWrapper
           ];
 
           postInstall = ''
