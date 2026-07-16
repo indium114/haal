@@ -1,8 +1,9 @@
-use std::{fs, iter::repeat_n, process::exit};
-use mlua::{Lua, Table, Value};
 use colored_text::Colorize;
+use mlua::{Lua, Table, Value};
+use std::{fs, iter::repeat_n, process::exit};
 
 mod stat;
+mod stat_user;
 mod stat_wm;
 
 fn config_dir() -> String {
