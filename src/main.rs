@@ -3,6 +3,7 @@ use mlua::{Lua, Table, Value};
 use std::{fs, iter::repeat_n, process::exit};
 
 mod stat;
+mod stat_mem;
 mod stat_os;
 mod stat_shell;
 mod stat_terminal;
@@ -29,10 +30,10 @@ fn load_logo() -> (Vec<String>, usize) {
     };
 
     let mut lines: Vec<String> = contents.lines().map(String::from).collect();
-    let longest = lines.iter().map(|l| l.len()).max().unwrap_or(0);
+    let longest = lines.iter().map(|l| l.chars().count()).max().unwrap_or(0);
 
     for line in &mut lines {
-        let padding = longest - line.len();
+        let padding = longest - line.chars().count();
         line.extend(repeat_n(' ', padding));
     }
 
