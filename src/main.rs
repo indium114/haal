@@ -1,6 +1,6 @@
 use std::{fs, process::exit};
 
-use mlua::{Function, Lua};
+use mlua::{Lua, Table, Value};
 
 mod stat;
 mod stat_wm;
@@ -26,7 +26,7 @@ fn main() {
     stat::stat(&mut lua);
     lua.load(config).exec().unwrap();
 
-    let main_func: Function = match lua.globals().get("main") {
+    let main_table: Table = match lua.globals().get("stats") {
         Ok(func) => func,
         Err(_) => {
             println!("No main function specified.");
@@ -34,5 +34,8 @@ fn main() {
         }
     };
 
-    main_func.call::<()>(()).unwrap();
+    for p in main_table.pairs::<Value, String>() {
+        let (_, i) = p.unwrap();
+        println!("{}", i);
+    }
 }
