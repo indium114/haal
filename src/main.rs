@@ -1,6 +1,6 @@
 use std::{fs, iter::repeat_n, process::exit};
-
 use mlua::{Lua, Table, Value};
+use colored_text::Colorize;
 
 mod stat;
 mod stat_wm;
@@ -58,6 +58,15 @@ fn main() {
         }
     };
 
+    let logo_colour: String = match lua.globals().get("logo_colour") {
+        Ok(colour) => colour,
+        Err(_) => {
+            println!("No 'logo_colour' specified");
+            println!("(this value should be a string hex code)");
+            exit(1);
+        }
+    };
+
     for p in main_table.pairs::<Value, String>() {
         let (_, i) = p.unwrap();
         stats.push(i);
@@ -67,6 +76,6 @@ fn main() {
         let logo_line = logo.get(i).map_or(blank.as_str(), |b| b.as_str());
         let stat_line = stats.get(i).map_or("", |s| s.as_str());
 
-        println!("{} {}", logo_line, stat_line);
+        println!("{} {}", logo_line.hex(&logo_colour), stat_line);
     }
 }
