@@ -6,11 +6,18 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = import nixpkgs { inherit system; };
-      in {
+      in
+      {
         devShells.default = pkgs.mkShell {
           name = "rust-devshell";
 
@@ -32,11 +39,21 @@
           src = ./.;
 
           cargoLock.lockFile = ./Cargo.lock;
+
+          buildInputs = [
+            pkgs.pciutils
+          ];
+
+          postInstall = ''
+            wrapProgram $out/bin/haal \
+              --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.pciutils ]}
+          '';
         };
 
         apps.haal = {
           type = "app";
           program = "${self.packages.${pkgs.stdenv.hostPlatform.system}.haal}/bin/haal";
         };
-      });
+      }
+    );
 }
