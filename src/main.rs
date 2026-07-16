@@ -4,6 +4,7 @@ use std::{fs, iter::repeat_n, process::exit};
 
 mod stat;
 mod stat_user;
+mod stat_vendor;
 mod stat_wm;
 
 fn config_dir() -> String {
