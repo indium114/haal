@@ -15,6 +15,8 @@ mod stat_user;
 mod stat_vendor;
 mod stat_wm;
 
+mod colour;
+
 fn config_dir() -> String {
     let home = dirs::home_dir()
         .map(|p| p.to_string_lossy().into_owned())
@@ -58,6 +60,7 @@ fn main() {
     let blank = " ".repeat(spaces);
 
     stat::stat(&mut lua);
+    colour::colours(&mut lua);
     lua.load(config).exec().unwrap();
 
     let main_table: Table = match lua.globals().get("stats") {
