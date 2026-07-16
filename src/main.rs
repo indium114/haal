@@ -3,6 +3,7 @@ use mlua::{Lua, Table, Value};
 use std::{fs, iter::repeat_n, process::exit};
 
 mod stat;
+mod stat_uptime;
 mod stat_user;
 mod stat_vendor;
 mod stat_wm;
