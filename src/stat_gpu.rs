@@ -10,8 +10,8 @@ pub fn name() -> String {
     let mut name: String = "unknown".to_string();
     for l in out.lines() {
         if l.contains("VGA compatible controller") || l.contains("3D controller") {
-            if let Some(n) = l.split(":").nth(1) {
-                name = n.to_string();
+            if let Some(n) = l.split(":").nth(2) {
+                name = n.to_string().trim().to_string();
             }
         }
     }
