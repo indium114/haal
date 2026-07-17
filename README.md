@@ -36,6 +36,22 @@ cargo install haal
 the config file is stored at `~/.config/haal/init.lua`, and the ascii logo is stored at `~/.config/haal/logo.txt`.
 > to generate a starting config, run `just configure` from the root of this repo.
 
+the `init.lua` file should contain two things:
+- `logo_colour`: a string containing a hex code. this sets the colour of the ascii logo
+- `stats`: a table of strings, these are the rows of the fetch output.
+
+for example, here's a basic config that shows a green logo and some info about the operating system:
+
+```lua
+logo_colour = "#00FF00"
+
+stats = {
+  "distro: " .. os.name .. " " .. os.version,
+  "hostname: " .. os.hostname,
+  "kernel version: " .. os.kernel,
+}
+```
+
 all of the available stats are used in the default config, but they will also be below for reference.
 
 ### user
