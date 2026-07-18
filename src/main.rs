@@ -24,6 +24,31 @@ fn config_dir() -> String {
     home + "/.config/haal"
 }
 
+fn strip_ansi(s: &str) -> String {
+    let mut result = String::new();
+    let mut chars = s.chars().peekable();
+
+    while let Some(ch) = chars.next() {
+        if ch == '\x1b' && chars.peek() == Some(&'[') {
+            chars.next();
+            while let Some(&x) = chars.peek() {
+                chars.next();
+                if x == 'm' {
+                    break;
+                }
+            }
+        } else {
+            result.push(ch);
+        }
+    }
+
+    result
+}
+
+fn visible_width(s: &str) -> usize {
+    strip_ansi(s).chars().count()
+}
+
 fn load_logo() -> (Vec<String>, usize) {
     let contents = match fs::read_to_string(config_dir() + "/logo.txt") {
         Ok(c) => c,
@@ -35,10 +60,10 @@ fn load_logo() -> (Vec<String>, usize) {
     };
 
     let mut lines: Vec<String> = contents.lines().map(String::from).collect();
-    let longest = lines.iter().map(|l| l.chars().count()).max().unwrap_or(0);
+    let longest = lines.iter().map(|l| visible_width(l)).max().unwrap_or(0);
 
     for line in &mut lines {
-        let padding = longest - line.chars().count();
+        let padding = longest - visible_width(line);
         line.extend(repeat_n(' ', padding));
     }
 

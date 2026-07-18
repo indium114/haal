@@ -1,9 +1,10 @@
 [package]
 name = "haal"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 description = "a small system fetch tool"
 license = "Unlicense"
+repository = "https://github.com/indium114/haal"
 
 [dependencies]
 colored_text = "0.5.1"
