@@ -7,7 +7,7 @@ license = "Unlicense"
 repository = "https://github.com/indium114/haal"
 
 [dependencies]
-colored_text = "0.5.1"
+colored_text = "0.6.0"
 dirs = "7.0.0"
 humantime = "2.4.0"
 mlua = { version = "0.12.0", features = ["lua54", "vendored"] }
