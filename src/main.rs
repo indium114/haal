@@ -71,6 +71,8 @@ fn load_logo() -> (Vec<String>, usize) {
 }
 
 fn main() {
+    let _ = color_eyre::install();
+
     let mut lua = Lua::new();
     let config = match fs::read_to_string(config_dir() + "/init.lua") {
         Ok(cfg) => cfg,
