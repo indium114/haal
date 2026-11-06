@@ -1,7 +1,7 @@
 use sysinfo::System;
 
 pub fn name() -> String {
-    let mut sys = System::new_all();
+    let mut sys = System::new_all().expect("your platform does not support sysinfo");
 
     sys.refresh_all();
 
@@ -9,7 +9,7 @@ pub fn name() -> String {
 }
 
 pub fn freq() -> f64 {
-    let mut sys = System::new_all();
+    let mut sys = System::new_all().expect("your platform does not support sysinfo");
 
     sys.refresh_all();
 
