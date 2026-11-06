@@ -7,6 +7,7 @@ license = "Unlicense"
 repository = "https://github.com/indium114/haal"
 
 [dependencies]
+color-eyre = "0.6.5"
 colored_text = "0.6.0"
 dirs = "7.0.0"
 humantime = "2.4.0"
