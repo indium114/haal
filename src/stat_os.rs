@@ -2,28 +2,28 @@ use sysinfo::System;
 
 pub fn name() -> String {
     match System::name() {
-        Some(name) => name,
-        None => "unknown".to_string(),
+        Ok(name) => name,
+        Err(_) => "unknown".to_string(),
     }
 }
 
 pub fn version() -> String {
     match System::os_version() {
-        Some(version) => version,
-        None => "unknown".to_string(),
+        Ok(version) => version,
+        Err(_) => "unknown".to_string(),
     }
 }
 
 pub fn hostname() -> String {
     match System::host_name() {
-        Some(host) => host,
-        None => "unknown".to_string(),
+        Ok(host) => host,
+        Err(_) => "unknown".to_string(),
     }
 }
 
 pub fn kernel() -> String {
     match System::kernel_version() {
-        Some(kernel) => kernel,
-        None => "unknown".to_string(),
+        Ok(kernel) => kernel,
+        Err(_) => "unknown".to_string(),
     }
 }
